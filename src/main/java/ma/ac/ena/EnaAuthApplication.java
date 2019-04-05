@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import ma.ac.ena.dao.EtudiantRepository;
 import ma.ac.ena.entities.Etudiant;
@@ -36,8 +37,12 @@ public class EnaAuthApplication {
 		 * for (Etudiant e : etds) { System.out.println(e.getNom()); }
 		 */
 
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
+		System.out.println("1 --------------------------------------------------");
+		System.out.println("b =>" + passwordEncoder.encode("b"));
 
-
+		System.out.println("2 --------------------------------------------------");
+		System.out.println("b =>" + passwordEncoder.encode("b"));
 	}
 
 }
