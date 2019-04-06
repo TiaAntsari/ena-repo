@@ -5,7 +5,9 @@ import java.util.List;
 import ma.ac.ena.entities.User;
 
 public interface UserService {
-	User save(User u);
+	public User saveUser(User u);
 
-	List<User> findAll();
+	public List<User> findAllUsers();
+
+	public User findUserByUsername(String username);
 }
