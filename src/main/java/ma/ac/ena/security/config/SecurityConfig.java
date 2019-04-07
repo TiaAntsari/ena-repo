@@ -3,6 +3,7 @@ package ma.ac.ena.security.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -34,9 +35,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/img/**").permitAll()
-				.anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
-				.defaultSuccessUrl("/index.html");
+		// http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/js/**",
+		// "/images/**", "/img/**").permitAll()
+		// .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
+		// .defaultSuccessUrl("/index.html");
+
+		http.csrf().disable();
+		http.formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/index.html");
+		http.authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/img/**").permitAll();
+		http.authorizeRequests().antMatchers("/login/**", "/register/**").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/etudiants/**").hasAuthority("ADMIN");
+		http.authorizeRequests().anyRequest().authenticated();
 
 	}
 

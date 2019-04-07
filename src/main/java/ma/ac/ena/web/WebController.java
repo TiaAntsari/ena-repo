@@ -14,4 +14,9 @@ public class WebController {
 	public String homePage() {
 		return "home";
 	}
+
+	@RequestMapping("/register")
+	public String registerPage() {
+		return "register";
+	}
 }

@@ -65,7 +65,7 @@ public class EnaAuthApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		usersRolesService.addRoleToUser("ff", "VISITEUR");
+		// usersRolesService.addRoleToUser("ff", "VISITEUR");
 		// usersRolesService.addRoleToUser("admin", "USER");
 	}
 
