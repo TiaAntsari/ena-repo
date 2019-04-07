@@ -6,6 +6,8 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -18,6 +20,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 @Table(name = "users")
 public class User implements Serializable {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idUser;
 	private String username;
 	private String password;
 	private boolean activated;
@@ -61,6 +65,15 @@ public class User implements Serializable {
 		this.activated = activated;
 	}
 
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+
+	// constructors
 	public User(String username, String password, boolean activated) {
 		super();
 		this.username = username;

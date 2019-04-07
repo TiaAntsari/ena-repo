@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/index.html");
 		http.authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/img/**").permitAll();
 		http.authorizeRequests().antMatchers("/login/**", "/register/**").permitAll();
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/etudiants/**").hasAuthority("ADMIN");
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/inscription/**", "/etudiants/**").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated();
 
 	}

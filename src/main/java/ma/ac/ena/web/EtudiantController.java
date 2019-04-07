@@ -1,16 +1,10 @@
 package ma.ac.ena.web;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +20,7 @@ public class EtudiantController {
 	private EtudiantService etudiantService;
 
 	// @Secured(value = { "ROLE_ADMIN", "ROLE_SCOLARITE" })
-	@PostMapping("/etudiants")
+	@PostMapping("/inscription")
 	public Etudiant saveEtudiant(@RequestBody @Valid Etudiant e) {
 		return etudiantService.save(e);
 	}
@@ -43,20 +37,4 @@ public class EtudiantController {
 		return etudiantService.findAll();
 	}
 
-	@GetMapping("/getLogedUser")
-	public Map<String, Object> getLogedUser(HttpSession session) {
-		SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-		String username = securityContext.getAuthentication().getName();
-		List<String> roles = new ArrayList<>();
-
-		for (GrantedAuthority ga : securityContext.getAuthentication().getAuthorities()) {
-
-			roles.add(ga.getAuthority());
-		}
-		Map<String, Object> params = new HashMap<>();
-		params.put("username", username);
-		params.put("roles", roles);
-
-		return params;
-	}
 }

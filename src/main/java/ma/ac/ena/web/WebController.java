@@ -19,4 +19,9 @@ public class WebController {
 	public String registerPage() {
 		return "register";
 	}
+
+	@RequestMapping("/inscription")
+	public String inscriptionPage() {
+		return "inscription";
+	}
 }

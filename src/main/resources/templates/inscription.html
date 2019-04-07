@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmln:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Inscription</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+ 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/myStyle.css" th:href="@{css/myStyle.css}"/>
+    
+</head>
+<body>
+ <div class="modal-dialog text-center">
+        <div class="col-sm-9 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="../img/face.png">
+                                    <div class="panel-heading">
+					<div class="panel-title" style="color: white">Sign In</div>
+				</div>                  
+                </div>
+
+                
+                        <div class="col-12 form-input">
+                            <form th:action="@{/inscription}" 
+                            		method="POST" class="form-horizontal">
+                                <div class="form-group">
+                                    <input type="text" name="nom" class="form-control" placeholder="nom">
+                                </div>
+                               <div class="form-group">
+                                    <input type="text" name="prenom" class="form-control" placeholder="prenom">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="dateNaissance" class="form-control" placeholder="date de naissance">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-success">Inscrire</button>
+                            </form>
+                        </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="js/myApp.js"></script>
+<!-- <script rel="stylesheet" type="text/javascript" src="js/react.min.js"/>
+<script rel="stylesheet" type="text/javascript" src="js/myApp.js"/> -->
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+</body>
+</html>

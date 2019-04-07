@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -11,15 +13,17 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Role implements Serializable {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idRole;
 	private String role;
 	private String description;
 
 	@ManyToMany
-	@JoinTable(name = "ATTRIBUER")
+	@JoinTable(name = "ROLES_PERMISSIONS_FORMS")
 	private Collection<Permission> permission;
 
 	@ManyToMany
-	@JoinTable(name = "ATTRIBUER")
+	@JoinTable(name = "ROLES_PERMISSIONS_FORMS")
 	private Collection<Forms> forms;
 
 	// constructors
@@ -34,8 +38,17 @@ public class Role implements Serializable {
 	}
 
 	// getters and setters
+
 	public String getRole() {
 		return role;
+	}
+
+	public Long getIdRole() {
+		return idRole;
+	}
+
+	public void setIdRole(Long idRole) {
+		this.idRole = idRole;
 	}
 
 	public void setRole(String role) {

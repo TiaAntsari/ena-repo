@@ -3,7 +3,6 @@ package ma.ac.ena;
 import java.text.ParseException;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import ma.ac.ena.dao.EtudiantRepository;
 import ma.ac.ena.entities.Etudiant;
-import ma.ac.ena.services.UsersRolesService;
 
 @SpringBootApplication
 public class EnaAuthApplication implements CommandLineRunner {
@@ -60,13 +58,28 @@ public class EnaAuthApplication implements CommandLineRunner {
 
 	// *******************Explication?*****************
 
-	@Autowired
-	private UsersRolesService usersRolesService;
+	// @Autowired
+	// private UsersRolesService usersRolesService;
+	// @Autowired
+	// private UserService usersService;
+	// @Autowired
+	// private RoleService roleService;
 
 	@Override
 	public void run(String... args) throws Exception {
+		// Role r = new Role();
+		// r.setRole("ADMIN");
+		// // r.setDescription("descrip");
+		// roleService.saveRole(r);
+		//
+		// User u = new User();
+		// u.setUsername("ADMIN");
+		// u.setPassword("admin");
+		// usersService.saveUser(u);
+
 		// usersRolesService.addRoleToUser("ff", "VISITEUR");
 		// usersRolesService.addRoleToUser("admin", "USER");
+
 	}
 
 }
