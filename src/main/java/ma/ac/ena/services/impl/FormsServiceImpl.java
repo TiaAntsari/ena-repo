@@ -25,4 +25,10 @@ public class FormsServiceImpl implements FormsService {
 		return null;
 	}
 
+	@Override
+	public void deleteForms(String type) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

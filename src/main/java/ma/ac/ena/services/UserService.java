@@ -7,6 +7,8 @@ import ma.ac.ena.entities.User;
 public interface UserService {
 	public User saveUser(User u);
 
+	public void deleteUser(String username);
+
 	public List<User> findAllUsers();
 
 	public User findUserByUsername(String username);

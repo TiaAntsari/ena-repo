@@ -37,4 +37,11 @@ public class UserServiceImp implements UserService {
 		return userRepository.findByUsername(username);
 	}
 
+	@Override
+	public void deleteUser(String username) {
+		User user = userRepository.findByUsername(username);
+
+		userRepository.delete(user);
+	}
+
 }

@@ -30,17 +30,8 @@ public class WebController {
 		return "inscription";
 	}
 
-	// @RequestMapping("/index")
-	// public String index(Model model) {
-	// List<User> users = userService.findAllUsers();
-	// model.addAttribute("listUsers", users);
-	// return "users";
-	// }
-	//
-	// @RequestMapping("/index")
-	// public String etudiant(Model model) {
-	// List<Etudiant> etudiants = etudiantService.findAll();
-	// model.addAttribute("listEtudiants", etudiants);
-	// return "users";
-	// }
+	@RequestMapping("/register")
+	public String registerPage() {
+		return "register";
+	}
 }

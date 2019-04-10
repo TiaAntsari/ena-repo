@@ -1,5 +1,7 @@
 package ma.ac.ena.services.impl;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,13 @@ public class UsersRolesServiceImpl implements UsersRolesService {
 		Role role = roleRepository.findByRole(roleName);
 		User user = userRepository.findByUsername(username);
 		user.getRoles().add(role);
+	}
+
+	@Override
+	public Collection<Role> findRoleByUsername(String username) {
+		User user = userRepository.findByUsername(username);
+		Collection<Role> roles = user.getRoles();
+		return roles;
 	}
 
 }

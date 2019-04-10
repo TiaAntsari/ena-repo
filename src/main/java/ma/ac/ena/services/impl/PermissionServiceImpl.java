@@ -25,4 +25,10 @@ public class PermissionServiceImpl implements PermissionService {
 		return null;
 	}
 
+	@Override
+	public void deletePermission(String operation) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

@@ -29,29 +29,6 @@ public class UserController {
 	@Autowired
 	private UsersRolesService usersRolesService;
 
-	// @Secured(value = { "ROLE_ADMIN", "ROLE_SCOLARITE" })
-	// @PostMapping("/register")
-	// Confirmation For changing password and username by user
-	// @RequestMapping(value = "/register", method = RequestMethod.POST, consumes =
-	// MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {
-	// MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	// @PostMapping("/register")
-	// public User saveUser(@RequestBody RegisterForm registerForm) {
-	// if (!registerForm.getPassword().equals(registerForm.getRepassword())) {
-	// throw new RuntimeException("Entrez le meme mot de passe pour confirmer");
-	// }
-	// User user = userService.findUserByUsername(registerForm.getUsername());
-	// if (user != null) {
-	// throw new RuntimeException("Ce nom d'utilisateur existe déjà");
-	// }
-	// User u = new User();
-	// u.setUsername(registerForm.getUsername());
-	// u.setPassword(registerForm.getPassword());
-	// userService.saveUser(u);
-	// usersRolesService.addRoleToUser(registerForm.getUsername(), "USER");
-	// return u;
-	// }
-
 	@PostMapping("/user")
 	public User saveUser(@RequestBody User user) {
 		return userService.saveUser(user);
