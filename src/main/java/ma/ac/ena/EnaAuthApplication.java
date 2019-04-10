@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import ma.ac.ena.dao.EtudiantRepository;
 import ma.ac.ena.entities.Etudiant;
@@ -43,12 +42,12 @@ public class EnaAuthApplication implements CommandLineRunner {
 		 * for (Etudiant e : etds) { System.out.println(e.getNom()); }
 		 */
 
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
-		System.out.println("1 --------------------------------------------------");
-		System.out.println("b =>" + passwordEncoder.encode("b"));
-
-		System.out.println("2 --------------------------------------------------");
-		System.out.println("b =>" + passwordEncoder.encode("b"));
+		// PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
+		// System.out.println("1 --------------------------------------------------");
+		// System.out.println("b =>" + passwordEncoder.encode("b"));
+		//
+		// System.out.println("2 --------------------------------------------------");
+		// System.out.println("b =>" + passwordEncoder.encode("b"));
 	}
 
 	@Bean
@@ -56,7 +55,7 @@ public class EnaAuthApplication implements CommandLineRunner {
 		return new BCryptPasswordEncoder();
 	}
 
-	// *******************Explication?*****************
+	// ******************* ++++++ *****************
 
 	// @Autowired
 	// private UsersRolesService usersRolesService;
@@ -68,17 +67,17 @@ public class EnaAuthApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Role r = new Role();
-		// r.setRole("ADMIN");
-		// // r.setDescription("descrip");
+		// r.setRole("USER");
+		// // r.setDescription("administrateur");
 		// roleService.saveRole(r);
 		//
 		// User u = new User();
-		// u.setUsername("ADMIN");
-		// u.setPassword("admin");
+		// u.setUsername("sco");
+		// u.setPassword("sco");
 		// usersService.saveUser(u);
 
-		// usersRolesService.addRoleToUser("ff", "VISITEUR");
-		// usersRolesService.addRoleToUser("admin", "USER");
+		// usersRolesService.addRoleToUser("bb", "USER");
+		// usersRolesService.addRoleToUser("admin", "ADMIN");
 
 	}
 

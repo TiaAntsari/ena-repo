@@ -21,7 +21,7 @@ public class EtudiantController {
 
 	// @Secured(value = { "ROLE_ADMIN", "ROLE_SCOLARITE" })
 	@PostMapping("/inscription")
-	public Etudiant saveEtudiant(@RequestBody @Valid Etudiant e) {
+	public Etudiant saveEtudiant1(@RequestBody @Valid Etudiant e) {
 		return etudiantService.save(e);
 	}
 
@@ -32,7 +32,7 @@ public class EtudiantController {
 
 	// @Secured(value = { "ROLE_ADMIN", "ROLE_PROF", "ROLE_ETUDIANT",
 	// "ROLE_SCOLARITE" })
-	@GetMapping("/etudiants")
+	@GetMapping("/etudiants1")
 	public List<Etudiant> listEtudiant() {
 		return etudiantService.findAll();
 	}

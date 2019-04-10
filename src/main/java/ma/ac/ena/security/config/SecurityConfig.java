@@ -40,10 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
 		// .defaultSuccessUrl("/index.html");
 
-		http.csrf().disable();
-		http.formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/index.html");
+		// http.csrf().disable();
+		http.formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/accueil.html");
 		http.authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/img/**").permitAll();
-		http.authorizeRequests().antMatchers("/login/**", "/register/**").permitAll();
+		http.authorizeRequests().antMatchers("/login/**").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/inscription/**", "/etudiants/**").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated();
 

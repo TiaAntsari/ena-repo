@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmln:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Users Page ENA Agadir</h2>
+ 	<table border="1">
+		<thead>
+			<tr>
+				<th>Ref</th>
+				<th>Nom d'utilisateur</th>
+				<th>Email</th>
+				<th>Roles</th>
+				<th>Plus de detail</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="u:${listUsers}">
+										<td th:text="${u.idUser}"></td>
+										<td th:text="${u.username}"></td>
+										<td th:text="${u.activated}"></td>
+										<td >A</td>
+										<td >B</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	 	<table border="1">
+		<thead>
+			<tr>
+				<th>CNE</th>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Date de naissance</th>
+				<th>Plus de detail</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="e:${listEtudiants}">
+										<td th:text="${e.idEtudiant}"></td>
+										<td th:text="${e.nom}"></td>
+										<td th:text="${e.prenom}"></td>
+										<td th:text="${e.dateNaissance}">A</td>
+										<td >B</td>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>

@@ -26,7 +26,7 @@ public class User implements Serializable {
 	private String password;
 	private boolean activated;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER) // (cascade=CascadeType.PERSIST)
 	@JoinTable(name = "USERS_ROLES")
 	private Collection<Role> roles = new ArrayList<Role>();
 
