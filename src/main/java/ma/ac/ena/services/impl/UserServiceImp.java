@@ -1,8 +1,13 @@
 package ma.ac.ena.services.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,10 +43,39 @@ public class UserServiceImp implements UserService {
 	}
 
 	@Override
-	public void deleteUser(String username) {
+	public void deleteUserByUsername(String username) {
 		User user = userRepository.findByUsername(username);
 
 		userRepository.delete(user);
+	}
+
+	@Override
+	public Page<User> findPageUser(Pageable pageable) {
+		List<User> users = userRepository.findAll();
+		int pageSize = pageable.getPageSize();
+		int currentPage = pageable.getPageNumber();
+		int startItem = currentPage * pageSize;
+
+		List<User> list;
+		if (users.size() < startItem) {
+			list = Collections.emptyList();
+		} else {
+			int toIndex = Math.min(startItem + pageSize, users.size());
+			list = users.subList(startItem, toIndex);
+		}
+		Page<User> userPage = new PageImpl<User>(list, PageRequest.of(currentPage, pageSize), users.size());
+		return userPage;
+	}
+
+	@Override
+	public void deleteUserById(Long idUser) {
+		userRepository.deleteById(idUser);
+
+	}
+
+	@Override
+	public User findUserById(Long idUser) {
+		return userRepository.findByIdUser(idUser);
 	}
 
 }

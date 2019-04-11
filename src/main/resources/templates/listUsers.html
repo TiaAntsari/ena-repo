@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head xmln:th="http://www.thymeleaf.org">
+        <meta charset="UTF-8"/>
+        <title>Listes des utilisateurs</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css"/>
+    </head>
+    <body>
+        <h2>Listes des utilisateurs</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ref</th>
+                        <th>Nom d'utilisateur</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Plus de detail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user, iStat : ${userPage.content}">
+                        <td th:text="${user.idUser}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.activated}"></td>
+                        <td >B</td>
+                        <td>
+                            <a href="#" class="btn btn-lg btn btn-primary btn-sm" data-offcanvas-triggr="top">Detail</a>
+                            <a th:href="@{delete(idUser=${user.idUser})}" class="btn btn-lg btn btn-danger btn-sm" data-offcanvas-triggr="top">Supprimer</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            
+            <hr/>
+            
+            <ul class="nav nav-pills">
+            	<li class="nav-item" ></li>
+            </ul>
+            
+            <div th:if="${userPage.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">
+            	<div>
+                    <button type="button" class="btn btn-outline-primary">
+                        <a th:href="@{/listUsers(size=${userPage.size}, page=${pageNumber})}" th:text="${pageNumber}" th:class="${pageNumber==userPage.number + 1} ? active"></a>
+                    </button>
+                </div>
+            </div>
+            <!--<li th:each="pageNumber : ${#pageNumbers.sequence(0,data.totalPages-1)}">
+            		 <div>
+                    <button type="button" class="btn btn-outline-primary">
+                        <a th:href="@{/(page=${pageNumber})" th:text="${pageNumber}" th:classappend="${currentPage}==${pageNumber}?'active':''"></a> -->
+        </div>
+    </body>
+</html>
