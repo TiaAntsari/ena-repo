@@ -6,4 +6,6 @@ import ma.ac.ena.entities.Forms;
 
 public interface FormsRepository extends JpaRepository<Forms, Integer> {
 	public Forms findByType(String type);
+
+	public Forms findByIdForms(int idForms);
 }

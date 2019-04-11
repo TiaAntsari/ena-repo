@@ -25,10 +25,13 @@
 					<td> </td>
 					<td>
 						<input type="submit" value="Editer" />
-
+						<input type="hidden"
+							   name="${_csrf.parameterName}"
+							   value="${_csrf.token}" />
 					</td>
 				</tr>				
 			</table>
+			
 		</form>
 </body>
 </html>

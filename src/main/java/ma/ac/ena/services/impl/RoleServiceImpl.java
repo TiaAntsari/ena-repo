@@ -23,6 +23,18 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
+	public void deleteRoleByRoleName(String roleName) {
+		Role role = roleRepository.findByRole(roleName);
+		roleRepository.delete(role);
+	}
+
+	@Override
+	public void deleteRoleByIdRole(int idRole) {
+		Role role = roleRepository.findByIdRole(idRole);
+		roleRepository.delete(role);
+	}
+
+	@Override
 	public List<Role> findAllRoles() {
 		return roleRepository.findAll();
 	}
@@ -30,12 +42,6 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Role findRoleByRoleName(String roleName) {
 		return roleRepository.findByRole(roleName);
-	}
-
-	@Override
-	public void deleteRole(String roleName) {
-		Role role = roleRepository.findByRole(roleName);
-		roleRepository.delete(role);
 	}
 
 }

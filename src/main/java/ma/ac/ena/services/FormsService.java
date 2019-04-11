@@ -7,9 +7,13 @@ import ma.ac.ena.entities.Forms;
 public interface FormsService {
 	public Forms saveForms(Forms forms);
 
-	public void deleteForms(String type);
+	public void deleteFormsByType(String type);
+
+	public void deleteFormsByIdForms(int idForms);
 
 	public List<Forms> findAllForms();
 
 	public Forms findFormsByType(String type);
+
+	public Forms findFormsByIdForms(int idForms);
 }

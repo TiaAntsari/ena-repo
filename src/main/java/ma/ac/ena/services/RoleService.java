@@ -7,7 +7,9 @@ import ma.ac.ena.entities.Role;
 public interface RoleService {
 	public Role saveRole(Role r);
 
-	public void deleteRole(String roleName);
+	public void deleteRoleByRoleName(String roleName);
+
+	public void deleteRoleByIdRole(int idRole);
 
 	public List<Role> findAllRoles();
 

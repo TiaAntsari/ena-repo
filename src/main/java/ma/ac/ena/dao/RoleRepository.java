@@ -7,8 +7,6 @@ import ma.ac.ena.entities.Role;
 public interface RoleRepository extends JpaRepository<Role, Long> {
 	public Role findByRole(String roleName);
 
-}
+	public Role findByIdRole(int idRole);
 
-// public interface RoleRepository extends JpaRepository<User, String>,
-// MyRoleCustomRepository<User, String> {
-// }
+}

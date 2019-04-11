@@ -16,9 +16,10 @@ public interface UserService {
 
 	public List<User> findAllUsers();
 
+	public User findUserById(Long idUser);
+
 	public User findUserByUsername(String username);
 
 	public Page<User> findPageUser(Pageable pageable);
 
-	public User findUserById(Long idUser);
 }

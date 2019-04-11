@@ -33,6 +33,7 @@ public class UsersController {
 	@Autowired
 	private UsersRolesService usersRolesService;
 
+	// home page of user
 	@RequestMapping(value = "/accueil.html", method = RequestMethod.GET)
 	public String findUsers(Model model) {
 		List<User> users = userService.findAllUsers();
@@ -41,12 +42,7 @@ public class UsersController {
 		return "accueil";
 	}
 
-	@GetMapping(path = "/deleteUser/{idUser}")
-	public ModelAndView deleteUser(@PathVariable Long idUser) {
-		userService.deleteUserById(idUser);
-		return new ModelAndView("redirect:/accueil.html");
-	}
-
+	// list all user
 	@RequestMapping(value = "/listUsers", method = RequestMethod.GET)
 	public String listUsers(Model model, @RequestParam("page") Optional<Integer> page,
 			@RequestParam("size") Optional<Integer> size) {
@@ -67,11 +63,7 @@ public class UsersController {
 		return "/listUsers.html";
 	}
 
-	// @GetMapping("register")
-	// public String registerPage() {
-	// return "register";
-	// }
-
+	// add new user
 	@PostMapping(path = "/register")
 	public String saveUser(RegisterForm registerForm) {
 		if (!registerForm.getPassword().equals(registerForm.getRepassword())) {
@@ -89,6 +81,7 @@ public class UsersController {
 		return "redirect:/accueil.html";
 	}
 
+	// edit an user
 	@RequestMapping(value = "/editUser/{idUser}")
 	public String editUserPage(@PathVariable Long idUser, ModelMap model) {
 		User user = userService.findUserById(idUser);
@@ -106,6 +99,13 @@ public class UsersController {
 
 		userService.saveUser(user);
 
+		return new ModelAndView("redirect:/accueil.html");
+	}
+
+	// delete an user
+	@GetMapping(path = "/deleteUser/{idUser}")
+	public ModelAndView deleteUser(@PathVariable Long idUser) {
+		userService.deleteUserById(idUser);
 		return new ModelAndView("redirect:/accueil.html");
 	}
 
