@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,16 +34,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return provider;
 	}
 
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+	}
+
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 
-		// http.csrf().disable();
-		http.formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/accueil.html");
+		http.csrf().disable();
+
+		http.formLogin().loginPage("/login").defaultSuccessUrl("/accueil.html");
 		http.authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**", "/img/**").permitAll();
-		http.authorizeRequests().antMatchers("/login/**").permitAll();
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/inscription/**", "/etudiants/**").hasAuthority("ADMIN");
+		http.authorizeRequests().antMatchers("/login*").permitAll(); // , "/etudiants/**"
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/register/**", "/editUser/**").hasAuthority("ADMIN");
+		http.authorizeRequests().antMatchers("/register/**").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated();
 
-	}
+		// 1
+		// http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		// 2
+		// http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
+		// 3
+		// http.addFilterBefore(new JWTAuthorizationFilter(),
+		// UsernamePasswordAuthenticationFilter.class);
 
+	}
+	//// Http..formLogin().loginPage("/login.html").loginProcessingUrl("/login").successHandler(myAuthenticationSuccessHandler());
+	// @Bean("authenticationManager")
+	// @Override
+	// public AuthenticationManager authenticationManagerBean() throws Exception {
+	// return super.authenticationManagerBean();
+	// }
+	//
+	// @Bean
+	// public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+	// return new MySimpleUrlAuthenticationSuccessHandler();
+	// }
 }

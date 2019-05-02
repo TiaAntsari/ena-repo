@@ -34,7 +34,7 @@ public class UsersController {
 	private UsersRolesService usersRolesService;
 
 	// home page of user
-	@RequestMapping(value = "/accueil.html", method = RequestMethod.GET)
+	@RequestMapping(value = { "/accueil.html", "/" }, method = RequestMethod.GET)
 	public String findUsers(Model model) {
 		List<User> users = userService.findAllUsers();
 

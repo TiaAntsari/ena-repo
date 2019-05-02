@@ -20,7 +20,7 @@ public class EtudiantController {
 	private EtudiantService etudiantService;
 
 	// @Secured(value = { "ROLE_ADMIN", "ROLE_SCOLARITE" })
-	@PostMapping("/inscription")
+	@PostMapping("/etudiants")
 	public Etudiant saveEtudiant1(@RequestBody @Valid Etudiant e) {
 		return etudiantService.save(e);
 	}
@@ -32,7 +32,8 @@ public class EtudiantController {
 
 	// @Secured(value = { "ROLE_ADMIN", "ROLE_PROF", "ROLE_ETUDIANT",
 	// "ROLE_SCOLARITE" })
-	@GetMapping("/etudiants1")
+	@GetMapping("/etudiants")
+	// @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 	public List<Etudiant> listEtudiant() {
 		return etudiantService.findAll();
 	}

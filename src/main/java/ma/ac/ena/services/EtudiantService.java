@@ -5,7 +5,9 @@ import java.util.List;
 import ma.ac.ena.entities.Etudiant;
 
 public interface EtudiantService {
-	Etudiant save(Etudiant e);
+	public Etudiant save(Etudiant e);
 
-	List<Etudiant> findAll();
+	public List<Etudiant> findAll();
+
+	public void deleteEtudiantByIdEtudiant(long idEtudiant);
 }

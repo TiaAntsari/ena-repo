@@ -9,4 +9,6 @@ public interface UsersRolesService {
 
 	public Collection<Role> findRoleByUsername(String username);
 
+	public void removeRoleToUser(String username, String roleName);
+
 }

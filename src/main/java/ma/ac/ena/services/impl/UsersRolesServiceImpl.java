@@ -35,4 +35,11 @@ public class UsersRolesServiceImpl implements UsersRolesService {
 		return roles;
 	}
 
+	@Override
+	public void removeRoleToUser(String username, String roleName) {
+		Role role = roleRepository.findByRole(roleName);
+		User user = userRepository.findByUsername(username);
+		user.getRoles().remove(role);
+	}
+
 }

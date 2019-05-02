@@ -15,16 +15,22 @@ import ma.ac.ena.services.EtudiantService;
 public class EtudiantServiceImpl implements EtudiantService {
 
 	@Autowired
-	private EtudiantRepository etudianRepository;
+	private EtudiantRepository etudiantRepository;
 
 	@Override
 	public Etudiant save(Etudiant e) {
-		return etudianRepository.save(e);
+		return etudiantRepository.save(e);
 	}
 
 	@Override
 	public List<Etudiant> findAll() {
-		return etudianRepository.findAll();
+		return etudiantRepository.findAll();
 	}
 
+	@Override
+	public void deleteEtudiantByIdEtudiant(long idEtudiant) {
+		Etudiant etudiant = etudiantRepository.findByIdEtudiant(idEtudiant);
+		etudiantRepository.delete(etudiant);
+
+	}
 }
