@@ -1,5 +1,9 @@
 package ma.ac.ena.security.config;
 
+import java.util.Collections;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +17,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -50,7 +57,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/register/**", "/editUser/**").hasAuthority("ADMIN");
 		http.authorizeRequests().antMatchers("/register/**").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated();
+		http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
+		http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
+		http.cors().configurationSource(new CorsConfigurationSource() {
+
+			@Override
+			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+				CorsConfiguration config = new CorsConfiguration();
+				config.setAllowedHeaders(Collections.singletonList("*"));
+				config.setAllowedMethods(Collections.singletonList("*"));
+				config.addAllowedOrigin("*");
+				config.setAllowCredentials(true);
+				return config;
+			}
+		});
 		// 1
 		// http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		// 2
